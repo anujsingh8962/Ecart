@@ -1,5 +1,5 @@
 /* Product Card Styles */
-.product-card {
+.product-cards {
     width: 15rem;
     border: 1px solid #d1d5db;
     border-radius: 0.5rem;
@@ -12,12 +12,12 @@
     transition: transform 0.2s ease-in-out;
   }
   
-  .product-card:hover {
+  .product-cards:hover {
     transform: scale(1.05);
   }
   
   /* Product Image */
-  .product-image {
+  .productlist-image{
     cursor: pointer;
     width: 8rem;
     height: 8rem;

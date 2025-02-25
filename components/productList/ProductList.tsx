@@ -17,8 +17,8 @@ const ProductList = ({ productData }: ProductListProps) => {
   const router = useRouter();
 
   return (
-    <div className="product-card" onClick={() => router.push(`/product/${id}`)}>
-      <img src={thumbnail} alt={title} className="product-image" />
+    <div className="product-cards" onClick={() => router.push(`/product/${id}`)}>
+      <img src={thumbnail} alt={title} className="productlist-image" />
       <h3 className="product-title">{title}</h3>
       <p className="product-price">${price}</p>
     </div>

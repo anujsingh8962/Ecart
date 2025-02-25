@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import CategoryProduct from "@/components/CategoryProduct";
-import "../../../styles/categoryProduct.css";
+import CategoryProduct from "@/components/categoryProduct/CategoryProduct";
+import "../../../components/categoryProduct/categoryProduct.css";
 
 const CategoryPage = () => {
   const { slug } = useParams();

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/utils/axios";
-import "../styles/categoryProduct.css";
+import "./categoryProduct.css";
 
 interface CategoryProductProps {
   url: string;
@@ -42,7 +42,7 @@ const CategoryProduct = ({ url }: CategoryProductProps) => {
 
   return (
     <div className="product-list">
-      <div className="product-container">
+      <div className="product-containers">
         {products.length > 0 ? (
           products.map((product) => (
             <div
