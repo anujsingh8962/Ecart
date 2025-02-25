@@ -1,0 +1,81 @@
+.auth-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 24px;
+  margin: 150px auto;
+  border: 2px solid #ccc; /* Add border */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+  background-color: white;
+  text-align: center;
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.auth-error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 16px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.auth-button.login {
+  background-color: blue;
+}
+
+.auth-button.signup {
+  background-color: green;
+}
+
+.auth-link {
+  margin-top: 12px;
+  font-size: 14px;
+}
+/* ✅ Style the password input container */
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+/* ✅ Style the password input field */
+.password-input {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* ✅ Make space for the eye icon */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ✅ Style the password toggle icon */
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
+}
+.password-toggle:hover {
+  color: #000;
+}
