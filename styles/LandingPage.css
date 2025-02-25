@@ -1,0 +1,25 @@
+.landing-page {
+    padding: 20px;
+  }
+  
+  .landing-page__carousel {
+    padding: 32px;
+  }
+  
+  .landing-page__product-section {
+    padding: 20px;
+  }
+  
+  .landing-page__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .landing-page__product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    cursor: pointer;
+  }
+  

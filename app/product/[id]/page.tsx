@@ -81,9 +81,9 @@ const ProductDetailPage = () => {
         </div>
       </div>
 
-      {/* Right: Product Details */}
+ 
       <div className="product-details">
-        <h1 className="product-title">{product.title}</h1>
+        <h1 className="product-titles">{product.title}</h1>
         <p className="product-info">
           Brand: <span className="font-semibold">{product.brand}</span> |
           Category: <span className="font-semibold">{product.category}</span>

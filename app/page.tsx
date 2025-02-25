@@ -5,6 +5,7 @@ import api from "../utils/axios";
 import ProductList from "@/components/productList/ProductList";
 import ImageCarousel from "@/components/ImageCarousel";
 import CategoryList from "@/components/categoryList/CategoryList";
+import "../styles/LandingPage.css";
 
 interface Product {
   id: number;
@@ -15,6 +16,7 @@ interface Product {
 
 const LandingPage = () => {
   const [productData, setProductData] = useState<Product[]>([]);
+
   const fetchAllProduct = async () => {
     const response = await api.get("/products");
     setProductData(response?.data?.products);
@@ -25,14 +27,14 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className="p-5">
+    <div className="landing-page">
       <CategoryList />
-      <div className="p-8">
+      <div className="landing-page__carousel">
         <ImageCarousel />
       </div>
-      <div className="p-5">
-        <h1 className="text-2xl font-bold mb-4">All Products</h1>
-        <div className="flex flex-wrap gap-6 cursor pointer">
+      <div className="landing-page__product-section">
+        <h1 className="landing-page__title">All Products</h1>
+        <div className="landing-page__product-list">
           {productData.map((data) => (
             <ProductList key={data.id} productData={data} />
           ))}

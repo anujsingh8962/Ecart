@@ -5,15 +5,17 @@ import "../styles/Input.css";
 // import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 interface InputProps {
+  className?: string;
   type: string;
   name: string;
   placeholder: string;
   value: string;
   onChange?: (e: { target: { value: string } }) => void;
-  onBlur: (e: { target: { value: string } }) => void;
+  onBlur?: (e: { target: { value: string } }) => void;
 }
 
 const Input = ({
+  className,
   type,
   name,
   placeholder,
@@ -32,7 +34,7 @@ const Input = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        className="input-field"
+        className={className}
       />
       {isPasswordField && (
         <button
