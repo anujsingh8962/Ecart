@@ -1,11 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import api from "../utils/axios";
 import ProductList from "@/components/productList/ProductList";
 import ImageCarousel from "@/components/ImageCarousel";
 import CategoryList from "@/components/categoryList/CategoryList";
 import "../styles/LandingPage.css";
+import Header from "@/components/header/Header";
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
 
 interface Product {
   id: number;
@@ -16,6 +19,8 @@ interface Product {
 
 const LandingPage = () => {
   const [productData, setProductData] = useState<Product[]>([]);
+  const searchedQuery =
+    useSelector((state: RootState) => state.search.searchedQuery) || "";
 
   const fetchAllProduct = async () => {
     const response = await api.get("/products");
@@ -26,16 +31,29 @@ const LandingPage = () => {
     fetchAllProduct();
   }, []);
 
+  const filteredData =
+    searchedQuery === ""
+      ? productData
+      : productData.filter((data) =>
+          data.title.toLowerCase().includes(searchedQuery.toLowerCase())
+        );
+
   return (
     <div className="landing-page">
-      <CategoryList />
-      <div className="landing-page__carousel">
-        <ImageCarousel />
-      </div>
+      <Header />
+      {searchedQuery === "" && (
+        <>
+          <CategoryList />
+          <div className="landing-page__carousel">
+            <ImageCarousel />
+          </div>
+        </>
+      )}
+
       <div className="landing-page__product-section">
         <h1 className="landing-page__title">All Products</h1>
         <div className="landing-page__product-list">
-          {productData.map((data) => (
+          {filteredData.map((data) => (
             <ProductList key={data.id} productData={data} />
           ))}
         </div>

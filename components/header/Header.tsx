@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter, usePathname } from "next/navigation";
 import { RootState } from "@/app/store";
 import { setSelectedCategory } from "@/app/store/categorySlice";
+import { setSearchedQuery } from "@/app/store/searchSlice";
 import api from "@/utils/axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,6 +20,7 @@ const Header = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isNotificationOpen, setNotificationOpen] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  // const [searchedQuery, setSearchedQuery] = useState("");
   const dispatch = useDispatch();
   const selectedCategory = useSelector(
     (state: RootState) => state.category.selectedCategory
@@ -50,6 +52,11 @@ const Header = () => {
     router.push(slug === "all" ? "/" : `/category/${slug}`);
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let text = e.target.value;
+    dispatch(setSearchedQuery(text));
+  };
+
   return (
     <>
       <header className="fixed top-0 left-0 w-full bg-white shadow-md z-[100] flex items-center px-6 py-2 gap-4">
@@ -73,6 +80,7 @@ const Header = () => {
         <input
           type="text"
           placeholder="Search..."
+          onChange={handleChange}
           className="border border-gray-300 rounded-lg px-4 py-2 w-[1500px] mx-6"
         />
 

@@ -7,7 +7,7 @@ import { setSelectedCategory } from "@/app/store/categorySlice";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import api from "@/utils/axios";
-import CategoryImgList from "./CategoryImgList"; // ✅ Import new component
+import CategoryImgList from "./CategoryImgList";
 import "../categoryList/categoryList.css";
 
 interface Category {

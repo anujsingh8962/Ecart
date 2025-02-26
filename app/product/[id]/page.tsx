@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import api from "@/utils/axios";
 import "./productstyle.css"; // Import the CSS file
+import Spinner from "@/components/spinner/Spinner";
 
 interface Product {
   id: number;
@@ -55,7 +56,7 @@ const ProductDetailPage = () => {
     }
   }, [id, router]);
 
-  if (loading) return <p>Loading product details...</p>;
+  if (loading) return <Spinner />;
   if (!product) return <p>Product not found</p>;
 
   return (
@@ -81,7 +82,6 @@ const ProductDetailPage = () => {
         </div>
       </div>
 
- 
       <div className="product-details">
         <h1 className="product-titles">{product.title}</h1>
         <p className="product-info">
@@ -97,7 +97,7 @@ const ProductDetailPage = () => {
               {(product.price / (1 - product.discountPercentage / 100)).toFixed(
                 2
               )}
-            </s>{" "}
+            </s>
             (-{product.discountPercentage}% OFF)
           </span>
         </div>

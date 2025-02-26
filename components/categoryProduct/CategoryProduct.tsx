@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/utils/axios";
 import "./categoryProduct.css";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/store";
+import Spinner from "../spinner/Spinner";
 
 interface CategoryProductProps {
   url: string;
@@ -20,6 +23,8 @@ const CategoryProduct = ({ url }: CategoryProductProps) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const searchedQuery =
+    useSelector((state: RootState) => state.search.searchedQuery) || "";
   const router = useRouter();
 
   useEffect(() => {
@@ -29,7 +34,6 @@ const CategoryProduct = ({ url }: CategoryProductProps) => {
         setProducts(response.data.products);
       } catch (err) {
         setError("Error fetching products");
-        console.error("Error fetching products:", err);
       } finally {
         setLoading(false);
       }
@@ -38,13 +42,20 @@ const CategoryProduct = ({ url }: CategoryProductProps) => {
     fetchProducts();
   }, [url]);
 
-  if (loading) return <p>Loading products...</p>;
+  const filteredData =
+    searchedQuery === ""
+      ? products
+      : products.filter((data) =>
+          data.title.toLowerCase().includes(searchedQuery.toLowerCase())
+        );
+
+  if (loading) return <Spinner />;
 
   return (
     <div className="product-list">
       <div className="product-containers">
-        {products.length > 0 ? (
-          products.map((product) => (
+        {filteredData.length > 0 ? (
+          filteredData.map((product) => (
             <div
               key={product.id}
               className="product-item"
