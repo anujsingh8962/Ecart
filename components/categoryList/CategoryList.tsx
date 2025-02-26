@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/app/store";
+import { useDispatch } from "react-redux";
 import { setSelectedCategory } from "@/app/store/categorySlice";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -16,34 +15,36 @@ interface Category {
 
 const CategoryList = () => {
   const dispatch = useDispatch();
-  const selectedCategory = useSelector(
-    (state: RootState) => state.category.selectedCategory
-  );
   const [allCategory, setAllCategory] = useState<Category[]>([]);
   const carouselRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
+  //function to fetch categories.
+  const fetchCategory = async () => {
+    try {
+      const response = await api.get("/products/categories");
+      setAllCategory(response.data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchCategory = async () => {
-      try {
-        const response = await api.get("/products/categories");
-        setAllCategory(response.data);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
     fetchCategory();
   }, []);
 
+  //Function to change selected category and navigates to the category-specific page
   const handleCategoryChange = (slug: string) => {
     dispatch(setSelectedCategory(slug));
     router.push(`/category/${slug}`);
   };
 
+  //Moves the category list left by 200px.
   const scrollLeft = () => {
     carouselRef.current?.scrollBy({ left: -200, behavior: "smooth" });
   };
 
+  //Moves the category list right by 200px.
   const scrollRight = () => {
     carouselRef.current?.scrollBy({ left: 200, behavior: "smooth" });
   };
@@ -62,10 +63,10 @@ const CategoryList = () => {
 
       <div ref={carouselRef} className="carousel-container">
         {allCategory.map((data) => (
+          //CategoryImgList component to show category images.
           <CategoryImgList
             key={data.slug}
             slug={data.slug}
-            selected={selectedCategory === data.slug}
             onSelect={handleCategoryChange}
           />
         ))}

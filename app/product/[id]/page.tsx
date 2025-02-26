@@ -31,26 +31,26 @@ const ProductDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string>("");
 
+  //function to fetch the product based on id
+  const fetchProduct = async () => {
+    setLoading(true);
+    try {
+      const response = await api.get(`/products/${id}`);
+      setProduct(response.data);
+      setSelectedImage(response.data.images[0]);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (isLoggedIn === "false") {
       router.push("/login");
       return;
     }
-
-    const fetchProduct = async () => {
-      setLoading(true);
-      try {
-        const response = await api.get(`/products/${id}`);
-        setProduct(response.data);
-        setSelectedImage(response.data.images[0]);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     if (id) {
       fetchProduct();
     }
@@ -64,6 +64,7 @@ const ProductDetailPage = () => {
       <div className="product-image-section">
         <div className="product-image-container">
           <img
+            //main product image
             src={selectedImage}
             alt={product.title}
             className="product-image"
@@ -72,9 +73,10 @@ const ProductDetailPage = () => {
         <div className="thumbnail-container">
           {product.images.map((img, index) => (
             <img
+              //corousel product image
               key={index}
               src={img}
-              alt={`Thumbnail ${index + 1}`}
+              alt="Thumbnail"
               className={`thumbnail ${selectedImage === img ? "active" : ""}`}
               onClick={() => setSelectedImage(img)}
             />
@@ -89,18 +91,7 @@ const ProductDetailPage = () => {
           Category: <span className="font-semibold">{product.category}</span>
         </p>
 
-        <div className="product-price">
-          ₹{product.price}{" "}
-          <span className="discount">
-            <s>
-              ₹
-              {(product.price / (1 - product.discountPercentage / 100)).toFixed(
-                2
-              )}
-            </s>
-            (-{product.discountPercentage}% OFF)
-          </span>
-        </div>
+        <div className="product-price">₹{product.price}</div>
 
         <p
           className={`stock ${product.stock > 0 ? "in-stock" : "out-of-stock"}`}
@@ -135,12 +126,12 @@ const ProductDetailPage = () => {
           </p>
         </div>
 
-        {/* Reviews Section */}
         <div className="customer-reviews">
           <h2>Customer Reviews</h2>
           {product.reviews.length > 0 ? (
             <div>
               {product.reviews.map((review, index) => (
+                //Reviews Section
                 <div key={index} className="review-card">
                   <p className="font-semibold">
                     {review.reviewerName} - ⭐ {review.rating}/5

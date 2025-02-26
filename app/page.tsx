@@ -1,12 +1,11 @@
 "use client";
 
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../utils/axios";
 import ProductList from "@/components/productList/ProductList";
 import ImageCarousel from "@/components/ImageCarousel";
 import CategoryList from "@/components/categoryList/CategoryList";
 import "../styles/LandingPage.css";
-import Header from "@/components/header/Header";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
 
@@ -40,7 +39,6 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      <Header />
       {searchedQuery === "" && (
         <>
           <CategoryList />
