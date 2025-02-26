@@ -46,7 +46,7 @@ const Signup = () => {
           type="text"
           name="username"
           placeholder="Username"
-          value={formik.values.password}
+          value={formik.values.username}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
@@ -57,6 +57,7 @@ const Signup = () => {
         <div className="password-container">
           <input
             type={showPassword ? "text" : "password"}
+            name="password"
             placeholder="Password"
             value={formik.values.password}
             onChange={formik.handleChange}
@@ -76,6 +77,7 @@ const Signup = () => {
         <div className="password-container">
           <input
             type={showConfirmPassword ? "text" : "password"}
+            name="confirmPassword"
             placeholder="Confirm Password"
             value={formik.values.confirmPassword}
             onChange={formik.handleChange}

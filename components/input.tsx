@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import { Eye, EyeOff } from "lucide-react"; // ✅ Use correct icons
 import "../styles/Input.css";
-// import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 interface InputProps {
   className?: string;
@@ -10,12 +10,12 @@ interface InputProps {
   name: string;
   placeholder: string;
   value: string;
-  onChange?: (e: { target: { value: string } }) => void;
-  onBlur?: (e: { target: { value: string } }) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
-  className,
+  className = "",
   type,
   name,
   placeholder,
@@ -25,6 +25,7 @@ const Input = ({
 }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const isPasswordField = type === "password";
+
   return (
     <div className="input-wrapper">
       <input
@@ -32,9 +33,9 @@ const Input = ({
         name={name}
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        onChange={onChange} // ✅ Properly forwarding Formik handlers
         onBlur={onBlur}
-        className={className}
+        className={`auth-input ${className}`}
       />
       {isPasswordField && (
         <button
@@ -42,10 +43,11 @@ const Input = ({
           onClick={() => setShowPassword(!showPassword)}
           className="password-toggle"
         >
-          {/* {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />} */}
+          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
         </button>
       )}
     </div>
   );
 };
+
 export default Input;
