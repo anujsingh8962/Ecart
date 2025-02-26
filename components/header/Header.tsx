@@ -20,7 +20,6 @@ const Header = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isNotificationOpen, setNotificationOpen] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
-  // const [searchedQuery, setSearchedQuery] = useState("");
   const dispatch = useDispatch();
   const selectedCategory = useSelector(
     (state: RootState) => state.category.selectedCategory

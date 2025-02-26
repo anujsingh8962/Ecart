@@ -7,9 +7,9 @@ import Input from "@/components/input";
 import { saveUser } from "../../utils/localStorage";
 import "../../styles/Auth.css";
 import Link from "next/link";
-import { Eye, EyeOff } from "lucide-react"; // ✅ Import eye icons
+import { Eye, EyeOff } from "lucide-react";
 
-// ✅ Validation Schema
+// Validation Schema
 const validationSchema = Yup.object({
   username: Yup.string().required("Username is required"),
   password: Yup.string()
@@ -25,13 +25,13 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // ✅ Handle Signup
+  //function to Handle Signup
   const handleSignup = (values: { username: string; password: string }) => {
     saveUser(values.username, values.password);
     router.push("/login");
   };
 
-  // ✅ Formik Setup
+  // Formik Setup
   const formik = useFormik({
     initialValues: { username: "", password: "", confirmPassword: "" },
     validationSchema,

@@ -1,12 +1,13 @@
 /* Main Container */
 .product-container {
   display: flex;
+  
   /* flex-direction: column; */
   background-color: white;
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-  max-width: 1200px; /* Optimized for large screens */
+  max-width: 1200px;
   margin: auto;
   gap: 20px;
 }
@@ -24,7 +25,7 @@
   flex-direction: column;
   align-items: center;
   width: 50%;
-  position: relative; /* Prevents layout shift */
+  position: relative;
   height: fit-content;
 }
 
@@ -38,10 +39,10 @@
 }
 
 .product-image {
-  width: 100%; /* Makes it responsive */
-  max-width: 500px; /* Prevents oversized images */
+  width: 100%;
+  max-width: 500px;
   height: auto;
-  aspect-ratio: 1/1; /* Maintains square shape */
+  aspect-ratio: 1/1;
   object-fit: contain;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -52,7 +53,7 @@
   display: flex;
   gap: 10px;
   justify-content: center;
-  flex-wrap: wrap; /* Ensures thumbnails wrap on small screens */
+  flex-wrap: wrap;
   margin-top: 10px;
 }
 
@@ -109,7 +110,7 @@
 .buttons-container {
   margin-top: 1.5rem;
   display: flex;
-  flex-wrap: wrap; /* Ensures buttons wrap on smaller screens */
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -129,13 +130,11 @@
 
 /* Responsive Adjustments for Small Screens */
 @media (max-width: 768px) {
-  /* .product-container {
-    flex-direction: column;
-  } */
+
 
   .product-image {
     width: 100%;
-    max-width: 350px; /* Smaller max width for mobile */
+    max-width: 350px;
   }
 
   .thumbnail {

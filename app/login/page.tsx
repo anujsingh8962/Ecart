@@ -7,19 +7,19 @@ import Input from "@/components/input";
 import { getUser } from "@/utils/localStorage";
 import "../../styles/Auth.css";
 import Link from "next/link";
-import { Eye, EyeOff } from "lucide-react"; // ✅ Import eye icons
+import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
   const router = useRouter();
-  const [showPassword, setShowPassword] = useState(false); // ✅ Track password visibility
+  const [showPassword, setShowPassword] = useState(false);
 
-  // ✅ Validation Schema
+  // Validation Schema
   const validationSchema = Yup.object({
     username: Yup.string().required("Username is required"),
     password: Yup.string().required("Password is required"),
   });
 
-  // ✅ Handle Login
+  //function to Handle Login
   const handleLogin = (
     values: { username: string; password: string },
     setErrors: any
@@ -33,7 +33,7 @@ const Login = () => {
     }
   };
 
-  // ✅ Formik for handling form
+  // Formik for handling form
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -64,10 +64,9 @@ const Login = () => {
             )}
           </div>
 
-          {/* ✅ Password Input with Toggle (Inside Input Field) */}
           <div className="password-container">
             <input
-              type={showPassword ? "text" : "password"} // ✅ Toggle input type
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Password"
               value={formik.values.password}

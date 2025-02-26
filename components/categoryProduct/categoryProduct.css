@@ -5,12 +5,12 @@
   .product-containers {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Space between products */
-    justify-content: center; /* Center products horizontally */
+    gap: 20px;
+    justify-content: center;
   }
   
   .product-item {
-    width: 250px; /* Set a fixed width for each product card */
+    width: 250px;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -55,7 +55,7 @@
   }
 
   .back-button {
-    background-color: #007bff; /* Blue button */
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -67,7 +67,7 @@
   }
   
   .back-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3;
   }
 
   
