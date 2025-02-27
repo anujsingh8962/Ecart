@@ -1,0 +1,130 @@
+/* ======= Header Styles ======= */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 30px;
+    height: 70px;
+  }
+  
+  /* Push content below the header */
+  .main-content {
+    margin-top: 80px;
+  }
+  
+  /* ======= Sidebar Styles ======= */
+  .sidebar {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    height: calc(100vh - 70px);
+    width: 260px;
+    background: #333;
+    color: white;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
+  }
+  
+  .sidebar--open {
+    transform: translateX(0);
+  }
+  
+  /* Sidebar Navigation */
+  .sidebar__nav {
+    padding: 20px;
+  }
+  
+  .sidebar__link {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .sidebar__link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Sidebar Logout Button */
+  .sidebar__logout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .sidebar__logout:hover {
+    background-color: darkred;
+  }
+  
+  /* ======= Search Input ======= */
+  .header__search {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 75rem;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  .header__search:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* ======= Notifications ======= */
+  .header__notifications {
+    position: relative;
+  }
+  
+  .header__notification-dropdown {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    width: 220px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+  }
+  
+  .header__notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .header__notification-item:last-child {
+    border-bottom: none;
+  }
+  
+  .header__menu {
+    cursor: pointer;
+  }
+  
+  .header__logo {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid gray;
+  }
+  
+ 
+  

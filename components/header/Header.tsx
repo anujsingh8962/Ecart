@@ -10,6 +10,7 @@ import api from "@/utils/axios";
 import Image from "next/image";
 import Link from "next/link";
 import { Bell, Menu, LogOut } from "lucide-react";
+import "./header.css";
 
 interface Category {
   slug: string;
@@ -58,13 +59,13 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full bg-white shadow-md z-[100] flex items-center px-6 py-2 gap-4">
+      <header className="header">
         <div
-          className="relative group"
+          className="header__menu"
           onMouseEnter={() => setSidebarOpen(true)}
           onMouseLeave={() => setSidebarOpen(false)}
         >
-          <Menu className="w-8 h-8 cursor-pointer mr-4" />
+          <Menu className="header__menu-icon" />
         </div>
 
         <Image
@@ -72,7 +73,7 @@ const Header = () => {
           alt="Company Logo"
           width={40}
           height={40}
-          className="w-12 h-12 object-contain rounded-full border border-gray-300"
+          className="header__logo"
           onClick={() => router.push("/")}
         />
 
@@ -80,52 +81,47 @@ const Header = () => {
           type="text"
           placeholder="Search..."
           onChange={handleChange}
-          className="border border-gray-300 rounded-lg px-4 py-2 w-[1500px] mx-6"
+          className="header__search"
         />
 
-        <div className="relative">
+        <div className="header__notifications">
           <Bell
-            className="w-8 h-8 cursor-pointer"
+            className="header__bell-icon"
             onClick={() => setNotificationOpen(!isNotificationOpen)}
           />
           {isNotificationOpen && (
-            <div className="absolute right-0 mt-2 w-56 bg-white shadow-lg rounded-lg p-4 z-[200]">
-              <p className="text-gray-700">🔔 Notification 1</p>
-              <p className="text-gray-700">🔔 Notification 2</p>
-              <p className="text-gray-700">🔔 Notification 3</p>
+            <div className="header__notification-dropdown">
+              <p className="header__notification-item">🔔 Notification 1</p>
+              <p className="header__notification-item">🔔 Notification 2</p>
+              <p className="header__notification-item">🔔 Notification 3</p>
             </div>
           )}
         </div>
       </header>
+
       <aside
-        className={`absolute top-[60px] left-0 h-screen w-64 bg-gray-800 text-white transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out z-[90]`}
+        className={`sidebar ${
+          isSidebarOpen ? "sidebar--open" : "sidebar--closed"
+        }`}
         onMouseEnter={() => setSidebarOpen(true)}
         onMouseLeave={() => setSidebarOpen(false)}
       >
-        <nav className="p-4">
+        <nav className="sidebar__nav">
           {pathname === "/" ? (
             <>
-              <Link
-                href="/about"
-                className="block py-3 hover:bg-gray-700 px-4 rounded"
-              >
+              <Link href="/about" className="sidebar__link">
                 About
               </Link>
 
-              <button
-                onClick={handleLogout}
-                className="flex items-center gap-2 mt-4 w-full py-2 px-4 bg-red-600 hover:bg-red-700 rounded text-white"
-              >
-                <LogOut className="w-5 h-5" /> Logout
+              <button onClick={handleLogout} className="sidebar__logout">
+                <LogOut className="sidebar__logout-icon" /> Logout
               </button>
             </>
           ) : (
             <>
-              <h3 className="text-lg font-bold mb-2">Select Category</h3>
+              <h3 className="sidebar__title">Select Category</h3>
 
-              <div className="category-filter flex items-center gap-2">
+              <div className="sidebar__category">
                 <input
                   type="radio"
                   name="category"
@@ -139,10 +135,7 @@ const Header = () => {
               </div>
 
               {categories.map((category) => (
-                <div
-                  key={category.slug}
-                  className="category-filter flex items-center gap-2"
-                >
+                <div key={category.slug} className="sidebar__category">
                   <input
                     type="radio"
                     name="category"
