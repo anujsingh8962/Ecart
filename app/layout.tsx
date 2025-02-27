@@ -21,7 +21,7 @@ export default function RootLayout({
         <Provider store={store}>
           {!hideLayout && <Header />}
           <main className={hideLayout ? "" : "pt-[80px]"}>{children}</main>
-          {!hideLayout && <Footer />}{" "}
+          {!hideLayout && <Footer />}
         </Provider>
       </body>
     </html>

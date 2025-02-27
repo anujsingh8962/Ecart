@@ -53,7 +53,7 @@ const Header = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let text = e.target.value;
+    const text = e.target.value;
     dispatch(setSearchedQuery(text));
   };
 
