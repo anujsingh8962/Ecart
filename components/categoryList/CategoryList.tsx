@@ -50,26 +50,31 @@ const CategoryList = () => {
   };
 
   return (
-    <div className="category-container">
+    <div>
       <h2 className="category-title">All Categories</h2>
+      <div className="category-container">
+        <div className="category-wrapper">
+          {/* Left Arrow */}
+          <button onClick={scrollLeft} className="arrow-button left-arrow">
+            <ChevronLeft size={24} />
+          </button>
 
-      <button onClick={scrollLeft} className="arrow-button left-arrow">
-        <ChevronLeft size={24} />
-      </button>
+          {/* Image Carousel Section */}
+          <div ref={carouselRef} className="carousel-container">
+            {allCategory.map((data) => (
+              <CategoryImgList
+                key={data.slug}
+                slug={data.slug}
+                onSelect={handleCategoryChange}
+              />
+            ))}
+          </div>
 
-      <button onClick={scrollRight} className="arrow-button right-arrow">
-        <ChevronRight size={24} />
-      </button>
-
-      <div ref={carouselRef} className="carousel-container">
-        {allCategory.map((data) => (
-          //CategoryImgList component to show category images.
-          <CategoryImgList
-            key={data.slug}
-            slug={data.slug}
-            onSelect={handleCategoryChange}
-          />
-        ))}
+          {/* Right Arrow */}
+          <button onClick={scrollRight} className="arrow-button right-arrow">
+            <ChevronRight size={24} />
+          </button>
+        </div>
       </div>
     </div>
   );
